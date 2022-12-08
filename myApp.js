@@ -1,12 +1,32 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+const PersonModel = require("./models/person");
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Database connection successful");
+  })
+  .catch((err) => {
+    console.error("Database connection error");
+  });
+
+let Person = new PersonModel({
+  name: "Sherifdeen",
+  age: 25,
+  favoriteFoods: ["rice", "beans", "Banana"],
 });
 
-let Person;
+Person.save()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
