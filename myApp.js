@@ -6,6 +6,7 @@ mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(() => {
     console.log("Database connection successful");
@@ -15,8 +16,8 @@ mongoose
   });
 
 let Person = new PersonModel({
-  name: "Sherifdeen",
-  age: 25,
+  name: "Mujeeb",
+  age: 23,
   favoriteFoods: ["rice", "beans", "Banana"],
 });
 
