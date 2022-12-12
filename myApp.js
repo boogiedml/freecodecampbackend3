@@ -26,23 +26,17 @@ mongoose
     console.error("Database connection error");
   });
 
-let newPerson = new Person({
-  name: "Sodiq",
-  age: 15,
-  favoriteFoods: ["rice", "beans", "Banana"],
-});
-
-newPerson
-  .save()
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.error(err);
+const createAndSavePerson = (done) => {
+  let boogiedml = new Person({
+    name: "Sherifdeen Ishola",
+    age: 15,
+    favoriteFoods: ["rice", "beans", "Banana"],
   });
 
-const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  boogiedml.save(function (err, data) {
+    if (err) return console.error(err);
+    done(null, data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
