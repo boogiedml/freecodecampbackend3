@@ -5,13 +5,9 @@ const personSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
-  age: {
-    type: Number,
-    required: true,
-  },
-  favoriteFoods: Array,
+  age: Number,
+  favoriteFoods: [String],
 });
 
 module.exports = mongoose.model("Person", personSchema);

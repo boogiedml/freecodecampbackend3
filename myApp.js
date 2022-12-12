@@ -1,6 +1,17 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const PersonModel = require("./models/person");
+// const Person = require("./models/person");
+
+const personSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  age: Number,
+  favoriteFoods: [String],
+});
+
+const Person = mongoose.model("Person", personSchema);
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -15,13 +26,14 @@ mongoose
     console.error("Database connection error");
   });
 
-let Person = new PersonModel({
-  name: "Mujeeb",
-  age: 23,
+let newPerson = new Person({
+  name: "Sodiq",
+  age: 15,
   favoriteFoods: ["rice", "beans", "Banana"],
 });
 
-Person.save()
+newPerson
+  .save()
   .then((data) => {
     console.log(data);
   })
